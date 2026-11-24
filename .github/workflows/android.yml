@@ -1,0 +1,60 @@
+name: Android build
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HAS_SIGNING_KEY: ${{ secrets.COMETLEAP_KEYSTORE_BASE64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Unit tests (bot plays the game, renders screenshots)
+        run: ./gradlew testDebugUnitTest --no-daemon
+
+      - name: Lint
+        run: ./gradlew lintRelease --no-daemon
+
+      - name: Decode upload keystore
+        if: env.HAS_SIGNING_KEY == 'true'
+        env:
+          KEYSTORE_B64: ${{ secrets.COMETLEAP_KEYSTORE_BASE64 }}
+        run: echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+
+      - name: Build release bundle + APK
+        env:
+          COMETLEAP_KEYSTORE: ${{ env.HAS_SIGNING_KEY == 'true' && format('{0}/upload.jks', runner.temp) || '' }}
+          COMETLEAP_KEYSTORE_PASSWORD: ${{ secrets.COMETLEAP_KEYSTORE_PASSWORD }}
+          COMETLEAP_KEY_ALIAS: ${{ secrets.COMETLEAP_KEY_ALIAS }}
+          COMETLEAP_KEY_PASSWORD: ${{ secrets.COMETLEAP_KEY_PASSWORD }}
+        run: |
+          [ -z "$COMETLEAP_KEYSTORE" ] && unset COMETLEAP_KEYSTORE && echo "::warning::No signing secrets – building an unsigned bundle."
+          ./gradlew bundleRelease assembleRelease assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: comet-leap-release
+          path: |
+            app/build/outputs/bundle/release/*.aab
+            app/build/outputs/apk/release/*.apk
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/mapping/release/mapping.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: store-screenshots
+          path: store/

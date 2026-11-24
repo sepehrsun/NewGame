@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- orbit ring -->
+    <path android:strokeColor="#66FFFFFF" android:strokeWidth="1.6"
+        android:pathData="M54,54m-24,0a24,24 0,1 1,48 0a24,24 0,1 1,-48 0" />
+    <!-- planet -->
+    <path android:pathData="M54,54m-13,0a13,13 0,1 1,26 0a13,13 0,1 1,-26 0">
+        <aapt:attr name="android:fillColor" xmlns:aapt="http://schemas.android.com/aapt">
+            <gradient android:type="radial" android:centerX="49" android:centerY="49"
+                android:gradientRadius="20" android:startColor="#FF7FE7FF" android:endColor="#FF3A3FD0" />
+        </aapt:attr>
+    </path>
+    <!-- comet trail -->
+    <path android:pathData="M33,73 L72,40 L76,44 Z">
+        <aapt:attr name="android:fillColor" xmlns:aapt="http://schemas.android.com/aapt">
+            <gradient android:type="linear" android:startX="33" android:startY="73"
+                android:endX="74" android:endY="42"
+                android:startColor="#00FF5A2E" android:endColor="#FFFFB347" />
+        </aapt:attr>
+    </path>
+    <!-- comet head -->
+    <path android:fillColor="#FFFFF4D6" android:pathData="M74,42m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+</vector>

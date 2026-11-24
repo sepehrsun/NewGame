@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">جهش ستاره‌دنباله‌دار</string>
+    <string name="title_line1">جهش</string>
+    <string name="title_line2">ستاره‌دنباله‌دار</string>
+    <string name="tagline">بین سیاره‌ها بپر. پایین رو نگاه نکن!</string>
+    <string name="play">بازی</string>
+    <string name="shop">ظاهرها</string>
+    <string name="retry">دوباره</string>
+    <string name="menu">منو</string>
+    <string name="resume">ادامه</string>
+    <string name="paused">مکث</string>
+    <string name="best">رکورد</string>
+    <string name="score">امتیاز</string>
+    <string name="new_best">رکورد جدید!</string>
+    <string name="perfect">عالی</string>
+    <string name="tap_to_launch">برای پرش لمس کن</string>
+    <string name="hint_decay">مدارها فرو می‌ریزن — معطل نکن!</string>
+    <string name="continue_for">ادامه ★%d</string>
+    <string name="owned">خریداری‌شده</string>
+    <string name="selected">انتخاب‌شده</string>
+    <string name="daily_gift">هدیه روزانه</string>
+    <string name="gift_received">+%d ★</string>
+    <string name="sound">صدا</string>
+    <string name="music">موسیقی</string>
+    <string name="on">روشن</string>
+    <string name="off">خاموش</string>
+    <string name="lost">در فضا گم شدی</string>
+    <string name="crashed">برخورد کردی</string>
+    <string name="swallowed">سیاه‌چاله بلعیدت</string>
+    <string name="shield_saved">سپر نجاتت داد!</string>
+    <string name="shield">سپر</string>
+    <string name="magnet">آهنربا</string>
+    <string name="not_enough">ستاره کافی نداری</string>
+    <string name="back">بازگشت</string>
+    <string name="stars_earned">★ +%d</string>
+    <string name="games_played">تعداد بازی: %d</string>
+    <string-array name="skin_names">
+        <item>اخگر</item>
+        <item>یخچال</item>
+        <item>سمی</item>
+        <item>غنچه</item>
+        <item>خورشیدی</item>
+        <item>تهی</item>
+        <item>منشور</item>
+        <item>شفق</item>
+    </string-array>
+</resources>
